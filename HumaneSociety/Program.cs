@@ -47,10 +47,7 @@ namespace HumaneSociety
             //};
             //Query.RemoveAnimal(animal);
 
-            Animal animal = new Animal();            
-            Query.GetCategoryId("dog");
-            Console.WriteLine(animal.CategoryId);
-            Console.ReadLine();
+            
 
 
         }

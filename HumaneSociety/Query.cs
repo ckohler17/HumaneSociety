@@ -211,7 +211,59 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-            throw new NotImplementedException();
+            var animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            foreach (KeyValuePair<int, string> update in updates)
+            {
+                switch (update.Key)
+                {
+                    case 1:
+                        var updateCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
+                        animal.CategoryId = updateCategory.CategoryId;                      
+                        break;
+
+                    case 2:
+                        animal.Name = update.Value;
+                        break;
+
+                    case 3:
+                        animal.Age = Int32.Parse(update.Value);
+                        break;
+
+                    case 4:
+                        animal.Demeanor = update.Value;
+                        break;
+
+                    case 5:                        
+                        if (update.Value == "yes")
+                        {
+                            animal.KidFriendly = true;
+                        }
+                        else
+                        {
+                            animal.KidFriendly = false;
+                        }
+                       
+                        break;
+
+                    case 6:
+                      
+                        if (update.Value == "yes")
+                        {
+                            animal.PetFriendly = true;
+                        }
+                        else
+                        {
+                            animal.PetFriendly = false;
+                        }
+                        break;
+
+                    case 7:
+                        animal.Weight = Int32.Parse(update.Value);
+                        break;
+                }
+                
+            }
+            db.SubmitChanges();
         }
 
         internal static void RemoveAnimal(Animal animal)
@@ -220,11 +272,72 @@ namespace HumaneSociety
             db.Animals.DeleteOnSubmit(deleteAnimalfromdb);
             db.SubmitChanges();
         }
-        
+
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            throw new NotImplementedException();
+            var filteredAnimals = db.Animals.Select(a => a);
+            foreach (KeyValuePair<int, string> update in updates)
+            {
+                switch (update.Key)
+                {
+                    case 1:
+                        var searchedCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
+                        filteredAnimals = filteredAnimals.Where(a => a.Name == searchedCategory.Name);
+                        break;                   
+                        
+                    case 2:
+                        
+                        filteredAnimals = filteredAnimals.Where(a => a.Name == update.Value);
+                        break;
+                    case 3:
+                        
+                        filteredAnimals = filteredAnimals.Where(a => a.Age == Int32.Parse(update.Value));                        
+                        break;
+
+                    case 4:
+                        filteredAnimals = filteredAnimals.Where(a => a.Demeanor == update.Value);                       
+                        break;
+
+                    case 5:                        
+                        if (update.Value == "yes")
+                        {
+                            bool friendly = true;
+                            filteredAnimals = filteredAnimals.Where(a => a.KidFriendly == friendly);
+                        }
+                        if(update.Value == "no")
+                        {
+                            bool friendly = false;
+                            filteredAnimals = filteredAnimals.Where(a => a.KidFriendly == friendly);
+                        }
+
+                        break;
+
+                    case 6:
+
+                        if (update.Value == "yes")
+                        {
+                            bool friendly = true;
+                            filteredAnimals = filteredAnimals.Where(a => a.PetFriendly == friendly);
+                        }
+                        if(update.Value == "no")
+                        {
+                            bool friendly = false;
+                            filteredAnimals = filteredAnimals.Where(a => a.PetFriendly == friendly);
+                        }
+                        break;
+
+                    case 7:
+                        filteredAnimals = filteredAnimals.Where(a => a.Weight == Int32.Parse(update.Value));
+                        break;
+
+                    case 8:
+                        filteredAnimals = filteredAnimals.Where(a => a.AnimalId == Int32.Parse(update.Value));
+                        break;
+                }
+            }
+            return filteredAnimals;
+
         }
          
         // TODO: Misc Animal Things
@@ -276,8 +389,11 @@ namespace HumaneSociety
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
-        {
-            throw new NotImplementedException();
+        {          
+            Shot shot = db.Shots.Where(s => s.Name == shotName).FirstOrDefault();
+            AnimalShot updatedShot = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).FirstOrDefault();
+            updatedShot.ShotId = shot.ShotId;
+            updatedShot.DateReceived = DateTime.Now;
         }
     }
 }

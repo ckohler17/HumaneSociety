@@ -10,6 +10,13 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
+            Dictionary<int, string> testdict = new Dictionary<int, string>();
+            testdict.Add(7, "90");
+            testdict.Add(1, "Horse");
+
+            Query.UpdateAnimal(1, testdict);
+
+
             //PointOfEntry.Run();
             //Employee employee = new Employee();
             //Query.RunEmployeeQueries(employee, "create")
@@ -46,15 +53,15 @@ namespace HumaneSociety
             //    AnimalId = 10
             //};
             //Query.RemoveAnimal(animal);
-            Animal animal;
-            Client client;
-            using (var db = new HumaneSocietyDataContext())
-            {
-                animal = db.Animals.FirstOrDefault();
-                client = db.Clients.FirstOrDefault();
-            }
-            //Query.Adopt(animal, client);
-            Query.RemoveAdoption(animal.AnimalId, client.ClientId);
+            //Animal animal;
+            //Client client;
+            //using (var db = new HumaneSocietyDataContext())
+            //{
+            //    animal = db.Animals.FirstOrDefault();
+            //    client = db.Clients.FirstOrDefault();
+            //}
+            ////Query.Adopt(animal, client);
+            //Query.RemoveAdoption(animal.AnimalId, client.ClientId);
 
 
 

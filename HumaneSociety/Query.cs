@@ -211,8 +211,52 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-            throw new NotImplementedException();
+            var animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            foreach (KeyValuePair<int, string> update in updates)
+            {
+                switch (update.Key)
+                {
+                    case 1:
+                        var updateCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
+                        animal.CategoryId = updateCategory.CategoryId;
+                        break;
+                    case 2:
+                        animal.Name = update.Value;
+                        break;
+                    case 3:
+                        animal.Age = Int32.Parse(update.Value);
+                        break;
+                    case 4:
+                        animal.Demeanor = update.Value;
+                        break;
+                    case 5:
+                        if (update.Value == "yes")
+                        {
+                            animal.KidFriendly = true;
+                        }
+                        else
+                        {
+                            animal.KidFriendly = false;
+                        }
+                        break;
+                    case 6:
+                        if (update.Value == "yes")
+                        {
+                            animal.PetFriendly = true;
+                        }
+                        else
+                        {
+                            animal.PetFriendly = false;
+                        }
+                        break;
+                    case 7:
+                        animal.Weight = Int32.Parse(update.Value);
+                        break;
+                }
+            }
         }
+
+
 
         internal static void RemoveAnimal(Animal animal)
         {

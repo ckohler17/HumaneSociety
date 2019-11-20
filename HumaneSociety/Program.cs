@@ -10,6 +10,7 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             Dictionary<int, string> testdict = new Dictionary<int, string>();
             testdict.Add(7, "90");
             testdict.Add(1, "Horse");
@@ -18,6 +19,9 @@ namespace HumaneSociety
 
 
             //PointOfEntry.Run();
+=======
+            PointOfEntry.Run();
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
             //Employee employee = new Employee();
             //Query.RunEmployeeQueries(employee, "create")
             //{

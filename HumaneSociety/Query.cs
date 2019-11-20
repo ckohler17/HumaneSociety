@@ -218,6 +218,7 @@ namespace HumaneSociety
                 {
                     case 1:
                         var updateCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
+<<<<<<< HEAD
                         animal.CategoryId = updateCategory.CategoryId;                      
                         break;
 
@@ -234,6 +235,20 @@ namespace HumaneSociety
                         break;
 
                     case 5:                        
+=======
+                        animal.CategoryId = updateCategory.CategoryId;
+                        break;
+                    case 2:
+                        animal.Name = update.Value;
+                        break;
+                    case 3:
+                        animal.Age = Int32.Parse(update.Value);
+                        break;
+                    case 4:
+                        animal.Demeanor = update.Value;
+                        break;
+                    case 5:
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                         if (update.Value == "yes")
                         {
                             animal.KidFriendly = true;
@@ -242,11 +257,16 @@ namespace HumaneSociety
                         {
                             animal.KidFriendly = false;
                         }
+<<<<<<< HEAD
                        
                         break;
 
                     case 6:
                       
+=======
+                        break;
+                    case 6:
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                         if (update.Value == "yes")
                         {
                             animal.PetFriendly = true;
@@ -256,15 +276,24 @@ namespace HumaneSociety
                             animal.PetFriendly = false;
                         }
                         break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                     case 7:
                         animal.Weight = Int32.Parse(update.Value);
                         break;
                 }
+<<<<<<< HEAD
                 
             }
             db.SubmitChanges();
+=======
+            }
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
         }
+
+
 
         internal static void RemoveAnimal(Animal animal)
         {
@@ -284,6 +313,7 @@ namespace HumaneSociety
                     case 1:
                         var searchedCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
                         filteredAnimals = filteredAnimals.Where(a => a.Name == searchedCategory.Name);
+<<<<<<< HEAD
                         break;                   
                         
                     case 2:
@@ -300,37 +330,69 @@ namespace HumaneSociety
                         break;
 
                     case 5:                        
+=======
+                        break;
+                    case 2:
+                        filteredAnimals = filteredAnimals.Where(a => a.Name == update.Value);
+                        break;
+                    case 3:
+                        filteredAnimals = filteredAnimals.Where(a => a.Age == Int32.Parse(update.Value));
+                        break;
+                    case 4:
+                        filteredAnimals = filteredAnimals.Where(a => a.Demeanor == update.Value);
+                        break;
+                    case 5:
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                         if (update.Value == "yes")
                         {
                             bool friendly = true;
                             filteredAnimals = filteredAnimals.Where(a => a.KidFriendly == friendly);
                         }
+<<<<<<< HEAD
                         if(update.Value == "no")
+=======
+                        if (update.Value == "no")
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                         {
                             bool friendly = false;
                             filteredAnimals = filteredAnimals.Where(a => a.KidFriendly == friendly);
                         }
+<<<<<<< HEAD
 
                         break;
 
                     case 6:
 
+=======
+                        break;
+                    case 6:
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                         if (update.Value == "yes")
                         {
                             bool friendly = true;
                             filteredAnimals = filteredAnimals.Where(a => a.PetFriendly == friendly);
                         }
+<<<<<<< HEAD
                         if(update.Value == "no")
+=======
+                        if (update.Value == "no")
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                         {
                             bool friendly = false;
                             filteredAnimals = filteredAnimals.Where(a => a.PetFriendly == friendly);
                         }
                         break;
+<<<<<<< HEAD
 
                     case 7:
                         filteredAnimals = filteredAnimals.Where(a => a.Weight == Int32.Parse(update.Value));
                         break;
 
+=======
+                    case 7:
+                        filteredAnimals = filteredAnimals.Where(a => a.Weight == Int32.Parse(update.Value));
+                        break;
+>>>>>>> 6c058269343b07277010751c8e2d093ef903dc9c
                     case 8:
                         filteredAnimals = filteredAnimals.Where(a => a.AnimalId == Int32.Parse(update.Value));
                         break;
@@ -339,9 +401,17 @@ namespace HumaneSociety
             return filteredAnimals;
 
         }
-         
+
+
+
+
+
+
+
+
+
         // TODO: Misc Animal Things
-        internal static int GetCategoryId(string categoryName)
+         internal static int GetCategoryId(string categoryName)
         {
             return db.Categories.Where(a => a.Name == categoryName).FirstOrDefault().CategoryId;           
         }

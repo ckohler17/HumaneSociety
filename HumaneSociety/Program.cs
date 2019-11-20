@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
-            //PointOfEntry.Run();
+            PointOfEntry.Run();
             //Employee employee = new Employee();
             //Query.RunEmployeeQueries(employee, "create")
             //{
@@ -46,15 +46,15 @@ namespace HumaneSociety
             //    AnimalId = 10
             //};
             //Query.RemoveAnimal(animal);
-            Animal animal;
-            Client client;
-            using (var db = new HumaneSocietyDataContext())
-            {
-                animal = db.Animals.FirstOrDefault();
-                client = db.Clients.FirstOrDefault();
-            }
-            //Query.Adopt(animal, client);
-            Query.RemoveAdoption(animal.AnimalId, client.ClientId);
+            //Animal animal;
+            //Client client;
+            //using (var db = new HumaneSocietyDataContext())
+            //{
+            //    animal = db.Animals.FirstOrDefault();
+            //    client = db.Clients.FirstOrDefault();
+            //}
+            ////Query.Adopt(animal, client);
+            //Query.RemoveAdoption(animal.AnimalId, client.ClientId);
 
 
 

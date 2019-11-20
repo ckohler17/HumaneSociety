@@ -241,8 +241,11 @@ namespace HumaneSociety
                             animal.KidFriendly = false;
                         }
 
+
+
                         break;
                     case 6:
+
 
                         if (update.Value == "yes")
                         {
@@ -258,9 +261,12 @@ namespace HumaneSociety
                         animal.Weight = Int32.Parse(update.Value);
                         break;
                 }
+
+
                 
             }
             db.SubmitChanges();
+
 
         }
 
@@ -330,15 +336,7 @@ namespace HumaneSociety
 
         }
 
-
-
-
-
-
-
-
-
-        // TODO: Misc Animal Things
+         // TODO: Misc Animal Things
          internal static int GetCategoryId(string categoryName)
         {
             return db.Categories.Where(a => a.Name == categoryName).FirstOrDefault().CategoryId;           
@@ -370,11 +368,13 @@ namespace HumaneSociety
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            if (isAdopted == true)
+
+           if(isAdopted == true)
             {
                 adoption.ApprovalStatus = "Approved";
-            } 
-            else if(isAdopted == false)
+            }
+           else if(isAdopted == false)
+
             {
                 adoption.ApprovalStatus = "Denied";
             }
@@ -395,7 +395,7 @@ namespace HumaneSociety
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
-        {          
+        {
             Shot shot = db.Shots.Where(s => s.Name == shotName).FirstOrDefault();
             AnimalShot updatedShot = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).FirstOrDefault();
             updatedShot.ShotId = shot.ShotId;

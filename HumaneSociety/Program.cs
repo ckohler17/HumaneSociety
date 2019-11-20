@@ -10,15 +10,15 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
-            Dictionary<int, string> testdict = new Dictionary<int, string>();
-            testdict.Add(7, "90");
-            testdict.Add(1, "Horse");
+            //Dictionary<int, string> testdict = new Dictionary<int, string>();
+            //testdict.Add(7, "90");
+            //testdict.Add(1, "Horse");
 
-            Query.UpdateAnimal(1, testdict);
+            //Query.UpdateAnimal(1, testdict);
 
 
-            //PointOfEntry.Run();
             PointOfEntry.Run();
+            //PointOfEntry.Run();
             //Employee employee = new Employee();
             //Query.RunEmployeeQueries(employee, "create")
             //{

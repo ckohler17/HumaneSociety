@@ -283,7 +283,7 @@ namespace HumaneSociety
                 {
                     case 1:
                         var searchedCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
-                        filteredAnimals = filteredAnimals.Where(a => a.Name == searchedCategory.Name);
+                        filteredAnimals = filteredAnimals.Where(a => a.Category.Name == searchedCategory.Name);
                         break;
                     case 2:
                         filteredAnimals = filteredAnimals.Where(a => a.Name == update.Value);
@@ -370,7 +370,15 @@ namespace HumaneSociety
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            throw new NotImplementedException();
+            if (isAdopted == true)
+            {
+                adoption.ApprovalStatus = "Approved";
+            } 
+            else if(isAdopted == false)
+            {
+                adoption.ApprovalStatus = "Denied";
+            }
+            db.SubmitChanges();
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)

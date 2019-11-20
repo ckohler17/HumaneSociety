@@ -218,6 +218,7 @@ namespace HumaneSociety
                 {
                     case 1:
                         var updateCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
+
                         animal.CategoryId = updateCategory.CategoryId;
                         break;
                     case 2:
@@ -230,6 +231,7 @@ namespace HumaneSociety
                         animal.Demeanor = update.Value;
                         break;
                     case 5:
+
                         if (update.Value == "yes")
                         {
                             animal.KidFriendly = true;
@@ -238,8 +240,13 @@ namespace HumaneSociety
                         {
                             animal.KidFriendly = false;
                         }
+
+
+
                         break;
                     case 6:
+
+
                         if (update.Value == "yes")
                         {
                             animal.PetFriendly = true;
@@ -249,11 +256,18 @@ namespace HumaneSociety
                             animal.PetFriendly = false;
                         }
                         break;
+
                     case 7:
                         animal.Weight = Int32.Parse(update.Value);
                         break;
                 }
+
+
+                
             }
+            db.SubmitChanges();
+
+
         }
 
 
@@ -275,7 +289,7 @@ namespace HumaneSociety
                 {
                     case 1:
                         var searchedCategory = db.Categories.Where(c => c.Name == update.Value).FirstOrDefault();
-                        filteredAnimals = filteredAnimals.Where(a => a.Name == searchedCategory.Name);
+                        filteredAnimals = filteredAnimals.Where(a => a.Category.Name == searchedCategory.Name);
                         break;
                     case 2:
                         filteredAnimals = filteredAnimals.Where(a => a.Name == update.Value);
@@ -354,7 +368,15 @@ namespace HumaneSociety
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            throw new NotImplementedException();
+           if(isAdopted == true)
+            {
+                adoption.ApprovalStatus = "Approved";
+            }
+           else if(isAdopted == false)
+            {
+                adoption.ApprovalStatus = "Denied";
+            }
+            db.SubmitChanges();
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)
@@ -372,7 +394,10 @@ namespace HumaneSociety
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-            throw new NotImplementedException();
+            Shot shot = db.Shots.Where(s => s.Name == shotName).FirstOrDefault();
+            AnimalShot updatedShot = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).FirstOrDefault();
+            updatedShot.ShotId = shot.ShotId;
+            updatedShot.DateReceived = DateTime.Now;
         }
     }
 }
